@@ -7,7 +7,14 @@ class TreeNode(object):
         self.right = right
 
     def isSameTree(self, p, q):
-        return p
+        #This Function will be acting recursively to verify the Tree Values
+        if (self != p or self != q) and p != q:
+            print("Recursive Call")
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        elif p == q:
+            return True
+        else:
+            return False
 
     #def isSameTree(self, p, q):
         #return p == q if not p or not q else p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
@@ -15,10 +22,13 @@ class TreeNode(object):
 #Problem 2
 class HouseRobberSolution(object):
     def rob(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+         if len(nums) < 0:
+             return max([0])
+         if len(nums) < 3:
+             return max(nums):
+         nums[2] += nums[0]
+         for i in range(3, len(nums)): nums[i] += max(nums[i - 2], nums[i - 3])
+            return max(nums[-1], nums[-2])
         
 class Solution:
     def rob(self, nums):
@@ -73,7 +83,8 @@ def main():
     # Problem 1: Same Tree
     p = TreeNode(1, TreeNode(2), TreeNode(3))
     q = TreeNode(1, TreeNode(2), TreeNode(3))
-    print(TreeNode.isSameTree(p, q))  # Output: True
+    treeNode = TreeNode()
+    print(treeNode.isSameTree(p, q))  # Output: True
 
     # Problem 2: House Robber
     nums = [2, 7, 9, 3, 1]
