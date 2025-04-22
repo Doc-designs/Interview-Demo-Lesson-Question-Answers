@@ -1,20 +1,52 @@
 #Problem 1
-# Definition for a binary tree node.
+# Definition for a binary search tree(BST) node. A BST unlike other
+#Data Tree Formats only has two Children nodes per Node
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+    #Definition for a binary tree node.
+    #class TreeNode(object):
+    #     def __init__(self, val=0, left=None, right=None):
+    #         self.val = val
+    #         self.left = left
+    #         self.right = right
+
+    #Review of Python Syntax
+    #Classes are a collection of code grouped together under the umberlla of a shared name
+    #Python has both Methods & Functions as a part of its codebase
+    #Methods use the dot notation which might be like adding something to a list, ie, listname.append(5)
+    #Functions however are called individually with parameters and no specific object references len(listname)
+    #One of the benefits of python classes is that they can accept parameters, and they have a special function
+    #The __init__() method allows us to define an unspecified value for the parameter of self
+    #This allows us to designate something a method rather than a function, using self as a reference to
+    #you guessed it! its self!!!
+    #This Function will be acting recursively to verify the Tree Values
+    #Whats a tree(BST)? a tree is a type of list recognizable by its unique
+    #structure, as it relies on a linked list structure(Which means that you can
+    #Navigate relative to a node position). The distinction however from
+    #other collection formats is that it places on emphasis on dual branches to
+    #the other nodes. there are other formats of BST's, like a splay tree, that
+    #make use of the most recently referenced values to shift around its order.
     def isSameTree(self, p, q):
-        #This Function will be acting recursively to verify the Tree Values
-        if (self != p or self != q) and p != q:
-            print("Recursive Call")
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        elif p == q:
+        #First we determine if p == q
+        #First question, whats the variables of p/q referencing here?
+        #Why is it different than p.val, and why would we prefer one over the other
+        if p == q:
+            #Return true because we are only comparing two nodes at a given time
             return True
-        else:
+        #if there is no value for p OR q, and their values misalign
+        #Second Question Why do we want to use OR for the final check though?
+        if p is None or q is None or p.val != q.val:
+            #We want to return false Here
             return False
+        #If we call the function, the initial call will generally immediately return this call
+        #Third Question: What is a recursive function? 
+        #Why do we use it twice here?
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    #Final Question: whats the structural difference between a method and function performing these same #actions?
 
     #def isSameTree(self, p, q):
         #return p == q if not p or not q else p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
