@@ -115,24 +115,43 @@ class TwoSumSolution(object):
 #Problem 4
 
 class DecodeStringSolution(object):
+    #First Question: What is the difference between a method and a function? Why do we use self here?
+    #Second Question: What does the method decodeString do? What is its purpose?
     def decodeString(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        
-class Solution:
-    def decodeString(self, s):
+        #One benefit pof python is easily defining several variables at once
+        #Third Question: What is the purpose of each variable here? What are they doing?
         stack, num, string = [], 0, ""
-        for c in s:
-            if c == "[":
+        #Fourth Question: What is the purpose of the for loop here? What is it doing?
+        #We are iterating through the string s, and checking each character
+        for i in s:
+            #Fifth Question: What is the difference between if, elif, and else statements?
+            #Sixth Question: What is the purpose of the if statement here? What is it doing?
+            if i == "[":
+                #We are pushing the current number and string onto the stack
+                #Seventh Question: What is the purpose of the stack here? What is it doing?
+                #The stack is used to store the current number and string when we encounter a "[" character
+                #Eighth Question: What is the purpose of the num and string variables here? What are they doing?
+                #The num variable is used to store a filler value, and the string variable is used to store a filler value
                 stack += string,
                 stack += num,
                 num, string = 0, ""
-            elif c == "]":
+            elif i == "]":
+                #Ninth Question: What are pre_num and pre_string doing here? What are they referencing?
+                #We are popping the last number and string from the stack
                 pre_num, pre_string = stack.pop(), stack.pop()
+                #Tenth Question: What is the purpose of the string variable here? What is it doing?
+                #We are multiplying the current string by the last number in the stack
+                #Eleventh Question: What is the purpose of the pre_num variable here? What is it doing?
+                #The pre_num variable is used to store the last number in the stack, which is used to multiply the characters within current subsection of our total final string
                 string = pre_string + pre_num * string
-            elif c.isdigit(): num = num * 10 + int(c)
-            else: string += c
+            elif i.isdigit():
+                #Twelfth Question: What is the purpose of the num variable here? What is it doing?
+                #We are checking if the current character is a digit, and if so, we are updating the num variable 
+                num = num * 10 + int(i)
+            else:
+                #Thirteenth Question: What is the purpose of the string variable here? What is it doing?
+                #We are adding the current character to the string variable
+                string += i
+        #returning the final string
         return string
 
